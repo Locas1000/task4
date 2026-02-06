@@ -1,22 +1,22 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Register from './components/Register';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
+import Register from './components/Register';
+import UserTable from './components/UserTable';
+import Verify from './components/Verify';
 
 function App() {
     return (
-        <BrowserRouter>
+        <Router>
             <Routes>
-                {/* Default route: Redirect to Login */}
                 <Route path="/" element={<Navigate to="/login" />} />
 
-                {/* Our Pages */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/users" element={<UserTable />} />
 
-                {/* Placeholder for the table we will build next */}
-                <Route path="/users" element={<h2>User Management Table Coming Soon...</h2>} />
+                <Route path="/verify" element={<Verify />} />
             </Routes>
-        </BrowserRouter>
+        </Router>
     );
 }
 

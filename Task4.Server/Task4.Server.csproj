@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\assets\index-DBkz-poX.css" />
+    <Content Remove="wwwroot\assets\index-DXNIgeiv.js" />
+    <Content Remove="wwwroot\index.html" />
+    <Content Remove="wwwroot\vite.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
@@ -27,6 +34,13 @@
     <ProjectReference Include="..\task4.client\task4.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\index-DBkz-poX.css" />
+    <None Include="wwwroot\assets\index-DXNIgeiv.js" />
+    <None Include="wwwroot\index.html" />
+    <None Include="wwwroot\vite.svg" />
   </ItemGroup>
 
 </Project>

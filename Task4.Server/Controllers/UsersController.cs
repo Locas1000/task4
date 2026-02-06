@@ -16,8 +16,7 @@ namespace Task4.Server.Controllers
             _context = context;
         }
 
-        // GET: api/users
-        // Fetch all users to display in the table
+
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
@@ -37,7 +36,6 @@ namespace Task4.Server.Controllers
             return Ok(users);
         }
 
-        // POST: api/users/block
         [HttpPost("block")]
         public async Task<IActionResult> BlockUsers([FromBody] List<Guid> userIds)
         {
@@ -45,7 +43,6 @@ namespace Task4.Server.Controllers
             return Ok(new { message = "Users blocked" });
         }
 
-        // POST: api/users/unblock
         [HttpPost("unblock")]
         public async Task<IActionResult> UnblockUsers([FromBody] List<Guid> userIds)
         {
@@ -53,7 +50,6 @@ namespace Task4.Server.Controllers
             return Ok(new { message = "Users unblocked" });
         }
 
-        // POST: api/users/delete
         [HttpPost("delete")]
         public async Task<IActionResult> DeleteUsers([FromBody] List<Guid> userIds)
         {
@@ -63,7 +59,24 @@ namespace Task4.Server.Controllers
             return Ok(new { message = "Users deleted" });
         }
 
-        // Helper function to update status for multiple users
+        [HttpPost("delete-unverified")]
+        public async Task<IActionResult> DeleteUnverified()
+        {
+            var unverifiedUsers = await _context.Users
+                .Where(u => u.Status == "Unverified")
+                .ToListAsync();
+
+            if (!unverifiedUsers.Any())
+            {
+                return Ok(new { message = "No unverified users found." });
+            }
+
+            _context.Users.RemoveRange(unverifiedUsers);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = $"Deleted {unverifiedUsers.Count} unverified users." });
+        }
+
         private async Task UpdateUserStatus(List<Guid> ids, string status)
         {
             var users = await _context.Users.Where(u => ids.Contains(u.Id)).ToListAsync();

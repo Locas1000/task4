@@ -13,22 +13,19 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-
         try {
-            // NOTE: We use the port 5013 (HTTP) that worked for you earlier
-            const response = await fetch('http://localhost:5013/api/auth/register', {
+            const API_URL = import.meta.env.VITE_API_URL;
+
+            // FIX: Used Backticks (`) instead of Single Quotes (')
+            const response = await fetch(`${API_URL}/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
 
             const data = await response.json();
+            if (!response.ok) throw new Error(data.message || 'Registration failed');
 
-            if (!response.ok) {
-                throw new Error(data.message || 'Registration failed');
-            }
-
-            // If successful, go to login page
             alert('Registration successful! Please log in.');
             navigate('/login');
         } catch (err) {
@@ -37,39 +34,49 @@ function Register() {
     };
 
     return (
-        <div className="container mt-5" style={{ maxWidth: '400px' }}>
-            <div className="card shadow">
-                <div className="card-body">
-                    <h2 className="text-center mb-4">Register</h2>
-                    {error && <div className="alert alert-danger">{error}</div>}
+        <div className="container d-flex justify-content-center align-items-center vh-100">
+            <div className="card shadow-lg overflow-hidden border-0" style={{ maxWidth: '900px', width: '100%' }}>
+                <div className="row g-0">
 
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            <label className="form-label">Name</label>
-                            <input
-                                type="text" className="form-control" name="name"
-                                onChange={handleChange} required
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label className="form-label">Email</label>
-                            <input
-                                type="email" className="form-control" name="email"
-                                onChange={handleChange} required
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label className="form-label">Password</label>
-                            <input
-                                type="password" className="form-control" name="password"
-                                onChange={handleChange} required
-                            />
-                        </div>
-                        <button type="submit" className="btn btn-primary w-100">Sign Up</button>
-                    </form>
-                    <div className="text-center mt-3">
-                        <Link to="/login">Already have an account? Login</Link>
+                    <div className="col-md-6 d-none d-md-block">
+                        <img
+                            src="https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=2629&auto=format&fit=crop"
+                            alt="Register Visual"
+                            className="img-fluid h-100 w-100"
+                            style={{ objectFit: 'cover' }}
+                        />
                     </div>
+
+                    <div className="col-md-6 p-5 bg-white d-flex flex-column justify-content-center">
+                        <h2 className="fw-bold text-success mb-2">Create Account</h2>
+                        <p className="text-muted mb-4">Start your journey with us today.</p>
+
+                        {error && <div className="alert alert-danger">{error}</div>}
+
+                        <form onSubmit={handleSubmit}>
+                            <div className="mb-3">
+                                <label className="form-label fw-bold small text-muted">FULL NAME</label>
+                                <input type="text" className="form-control form-control-lg bg-light border-0" name="name" onChange={handleChange} required />
+                            </div>
+                            <div className="mb-3">
+                                <label className="form-label fw-bold small text-muted">EMAIL</label>
+                                <input type="email" className="form-control form-control-lg bg-light border-0" name="email" onChange={handleChange} required />
+                            </div>
+                            <div className="mb-4">
+                                <label className="form-label fw-bold small text-muted">PASSWORD</label>
+                                <input type="password" className="form-control form-control-lg bg-light border-0" name="password" onChange={handleChange} required />
+                            </div>
+                            <div className="d-grid gap-2">
+                                <button type="submit" className="btn btn-success btn-lg fw-bold">Sign Up</button>
+                            </div>
+                        </form>
+
+                        <div className="text-center mt-4">
+                            <span className="text-muted small">Already have an account? </span>
+                            <Link to="/login" className="fw-bold text-decoration-none">Sign In</Link>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

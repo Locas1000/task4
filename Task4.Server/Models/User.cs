@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Task4.Server.Models
 {
-    // REQUIRED: Unique Index on Email enforced at storage level
     [Index(nameof(Email), IsUnique = true)]
     public class User
     {
@@ -19,12 +18,9 @@ namespace Task4.Server.Models
 
         public string PasswordHash { get; set; }
 
-        // Required for sorting the table
         public DateTime LastLoginTime { get; set; }
 
         public DateTime RegistrationTime { get; set; } = DateTime.UtcNow;
-
-        // Status can be: "Unverified", "Active", "Blocked"
         public string Status { get; set; } = "Unverified";
     }
 }

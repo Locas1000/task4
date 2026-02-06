@@ -13,8 +13,7 @@ namespace Task4.Server.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Additional configuration can go here if needed.
-            // The [Index] attribute in User.cs handles the unique email requirement.
+
         }
     }
 }
