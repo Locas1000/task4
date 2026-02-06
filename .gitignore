@@ -2,3 +2,13 @@
 **/bin/
 **/obj/
 *.user
+
+# User-specific files
+*.tmp
+*.Backup.*
+
+# Local configuration files with sensitive data
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+appsettings.Local.json
