@@ -12,9 +12,9 @@ A .NET 8 and React-based user management application with PostgreSQL database.
 
 This application requires database connection configuration. The connection string is **NOT** included in source control for security reasons.
 
-### Local Development Setup (User Secrets)
+### Local Development Setup (User Secrets - Recommended)
 
-For local development, use .NET User Secrets to store your connection string securely:
+For local development, use .NET User Secrets to store your connection string securely. This keeps credentials out of your filesystem entirely:
 
 1. Navigate to the server project directory:
    ```bash
@@ -23,47 +23,55 @@ For local development, use .NET User Secrets to store your connection string sec
 
 2. Set your database connection string using User Secrets:
    ```bash
-   dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=localhost;Database=UserManagementDb;Username=postgres;Password=YOUR_PASSWORD"
+   dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Host=localhost;Database=UserManagementDb;Username=YOUR_USERNAME;Password=YOUR_PASSWORD"
    ```
 
-3. Replace `YOUR_PASSWORD` with your actual PostgreSQL password.
+3. Replace `YOUR_USERNAME` and `YOUR_PASSWORD` with your actual PostgreSQL credentials.
 
-### Alternative: appsettings.Development.json
+**Security Note:** Be cautious when entering passwords in the command line as they may be stored in shell history. Consider using a password manager or temporary environment variables to avoid this.
 
-You can also create a local `appsettings.Development.json` file (this file is excluded from git):
+### Alternative: appsettings.Development.json (Local Override)
+
+The repository includes a template `appsettings.Development.json` with empty connection strings. You can modify this file locally to add your credentials:
 
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Database=UserManagementDb;Username=postgres;Password=YOUR_PASSWORD"
+    "DefaultConnection": "Host=localhost;Database=UserManagementDb;Username=YOUR_USERNAME;Password=YOUR_PASSWORD"
   }
 }
 ```
 
-**Note:** This file is ignored by git to prevent accidentally committing credentials.
+**Important Notes:**
+- Replace `YOUR_USERNAME` and `YOUR_PASSWORD` with your actual PostgreSQL credentials
+- This file is already in `.gitignore`, so your local changes won't be committed
+- The template version in the repository will remain unchanged
+- **Never use default superuser accounts (like 'postgres') for application connections in production**
 
 ### Production Deployment
 
-For production deployments, use environment variables:
+For production deployments, use environment variables or your platform's secure configuration system:
 
 **Linux/macOS:**
 ```bash
-export ConnectionStrings__DefaultConnection="Host=your-server;Database=UserManagementDb;Username=postgres;Password=YOUR_PASSWORD"
+export ConnectionStrings__DefaultConnection="Host=your-server;Database=UserManagementDb;Username=YOUR_USERNAME;Password=YOUR_PASSWORD"
 ```
 
 **Windows (PowerShell):**
 ```powershell
-$env:ConnectionStrings__DefaultConnection="Host=your-server;Database=UserManagementDb;Username=postgres;Password=YOUR_PASSWORD"
+$env:ConnectionStrings__DefaultConnection="Host=your-server;Database=UserManagementDb;Username=YOUR_USERNAME;Password=YOUR_PASSWORD"
 ```
 
 **Docker:**
 ```yaml
 environment:
-  - ConnectionStrings__DefaultConnection=Host=your-server;Database=UserManagementDb;Username=postgres;Password=YOUR_PASSWORD
+  - ConnectionStrings__DefaultConnection=Host=your-server;Database=UserManagementDb;Username=YOUR_USERNAME;Password=YOUR_PASSWORD
 ```
 
+**Important:** Replace `YOUR_USERNAME` and `YOUR_PASSWORD` with your production database credentials. Use a dedicated application user with minimal required permissions, not a superuser account.
+
 **Azure App Service / Cloud Platforms:**
-Configure the connection string in the application settings/configuration section of your hosting platform.
+Configure the connection string in the application settings/configuration section of your hosting platform. Most platforms provide secure configuration management.
 
 ## Running the Application
 
