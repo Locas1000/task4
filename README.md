@@ -2,7 +2,7 @@
 
 A professional user management web application built with .NET 8, React, and PostgreSQL. This application provides secure user authentication, registration with email verification, and a comprehensive admin panel for managing users.
 
-## 🚀 Features
+##  Features
 
 ### Authentication & Authorization
 - **User Registration** with email verification
@@ -41,7 +41,7 @@ A professional user management web application built with .NET 8, React, and Pos
 - **Tooltips** for better usability
 - **No Unnecessary Animations** - Clean, business-oriented interface
 
-## 📋 Prerequisites
+##  Prerequisites
 
 Before running this application, ensure you have:
 
@@ -50,7 +50,7 @@ Before running this application, ensure you have:
 - **PostgreSQL** (v12 or later)
 - **SMTP Server Access** (for sending verification emails)
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 ### Backend
 - .NET 8 / ASP.NET Core
@@ -64,7 +64,7 @@ Before running this application, ensure you have:
 - CSS Framework (Bootstrap or equivalent)
 - Axios for API requests
 
-## 📦 Installation & Setup
+##  Installation & Setup
 
 ### 1. Clone the Repository
 
@@ -114,7 +114,7 @@ Create or modify `Task4.Server/appsettings.Development.json`:
 }
 ```
 
-> ⚠️ **Security Note**: This file is in `.gitignore` and will not be committed. Never commit credentials to source control.
+>  **Security Note**: This file is in `.gitignore` and will not be committed. Never commit credentials to source control.
 
 ### 3. Email Configuration
 
@@ -177,7 +177,7 @@ Ensure `appsettings.json` has the correct client URL:
 }
 ```
 
-## 🎯 Usage
+##  Usage
 
 ### First Time Setup
 
@@ -211,7 +211,7 @@ Ensure `appsettings.json` has the correct client URL:
 - If your account is blocked/deleted, you'll be redirected to login
 - **Email uniqueness** is enforced by the database (unique index)
 
-## 🏗️ Architecture
+##  Architecture
 
 ### Database Schema
 
@@ -234,7 +234,7 @@ Ensure `appsettings.json` has the correct client URL:
 4. **Asynchronous Email**: Verification emails are sent without blocking registration flow
 5. **Proper HTTP Status Codes**: Meaningful error responses for all operations
 
-## 🔒 Security Considerations
+##  Security Considerations
 
 ### Production Deployment
 
@@ -256,7 +256,7 @@ Ensure `appsettings.json` has the correct client URL:
 - Be cautious of shell history when setting environment variables
 - Use a password manager for secure credential storage
 
-## 📱 Responsive Design
+##  Responsive Design
 
 The application is fully responsive and works on:
 - Desktop browsers (Chrome, Firefox, Safari, Edge)
@@ -266,7 +266,7 @@ The application is fully responsive and works on:
 
 The UI maintains professional appearance and usability across all devices.
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Database Connection Issues
 
@@ -301,7 +301,7 @@ Error: EADDRINUSE: address already in use :::5174
 ```
 - Change port in `vite.config.js` or kill the process using the port
 
-## 📚 Project Requirements Met
+##  Project Requirements Met
 
 ✅ Unique index on email in database  
 ✅ Professional table with toolbar layout  
@@ -319,7 +319,7 @@ Error: EADDRINUSE: address already in use :::5174
 ✅ Error messages, tooltips, and status messages  
 ✅ No wallpapers, no animations, no browser alerts  
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/your-feature`
@@ -327,16 +327,16 @@ Error: EADDRINUSE: address already in use :::5174
 4. Push to the branch: `git push origin feature/your-feature`
 5. Open a Pull Request
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 👤 Author
+##  Author
 
 **Locas1000**
 - GitHub: [@Locas1000](https://github.com/Locas1000)
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - Built as part of Task #5 course project
 - Uses .NET 8, React, and PostgreSQL
